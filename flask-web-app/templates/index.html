@@ -9,8 +9,20 @@
     <h2>Welcome {{ user.get("name") }}!</h2>
 
     <ul>
-    {% if config.get("ENDPOINT") %}
-      <li><a href='/call_downstream_api'>Call a downstream API</a></li>
+    {% if config.get("GRAPH_ENDPOINT") %}
+      <li><a href='/call_downstream_api'>Downstream API (Microsoft Graph)</a></li>
+    {% endif %}
+
+    {% if config.get("WORKSPACE_ENDPOINT") %}
+      <li><a href='/call_workspace_api'>List Workspaces API (Microsoft Fabric)</a></li>
+    {% endif %}
+
+    {% if config.get("LAKEHOUSE_ENDPOINT") %}
+      <li><a href='/call_lakehouse_api'>**List Lakehouse in Workspace API (Microsoft Fabric)</a></li>
+    {% endif %}
+
+    {% if config.get("TABLES_ENDPOINT") %}
+      <li><a href='/call_lakehouse_tables_api'>List Tables in Lakehouse API (Microsoft Fabric)</a></li>
     {% endif %}
 
     {% if config.get("B2C_PROFILE_AUTHORITY") %}

@@ -34,11 +34,26 @@ REDIRECT_PATH = "/getAToken"  # Used for forming an absolute URL to your redirec
 
 # You can find more Microsoft Graph API endpoints from Graph Explorer
 # https://developer.microsoft.com/en-us/graph/graph-explorer
-ENDPOINT = 'https://graph.microsoft.com/v1.0/me'  # This resource requires no admin consent
+GRAPH_ENDPOINT = 'https://graph.microsoft.com/v1.0/me'  # This resource requires no admin consent
+
+WORKSPACE_ENDPOINT = 'https://api.fabric.microsoft.com/v1/admin/workspaces' 
+
+LAKEHOUSE_ENDPOINT = 'https://api.fabric.microsoft.com/v1/workspaces/{WORKSPACE_ID}/lakehouses'
+
+TABLES_ENDPOINT = 'https://api.fabric.microsoft.com/v1/workspaces/{WORKSPACE_ID}/lakehouses/{LAKEHOUSE_ID}/tables'
+ 
+#/d6f58b22-d9c3-4d44-bd38-18c006ac0f03/tables
 
 # You can find the proper permission names from this document
 # https://docs.microsoft.com/en-us/graph/permissions-reference
-SCOPE = ["User.Read"]
+GRAPH_SCOPE = os.getenv("GRAPH_SCOPE").split(" ")
+print(f"Graph Scope: {GRAPH_SCOPE}")
+
+#Check the Fabric REST API for the relevant scopes per API
+#https://learn.microsoft.com/en-us/rest/api/fabric/articles/
+FABRIC_SCOPE = os.getenv("FABRIC_SCOPE").split(" ")
+print(f"Fabric Scope: {FABRIC_SCOPE}")
+
 
 # Tells the Flask-session extension to store sessions in the filesystem
 SESSION_TYPE = "filesystem"
